@@ -20,6 +20,9 @@
 # production
 /build
 
+# storybook
+/storybook-static
+
 # misc
 .DS_Store
 *.pem
@@ -49,5 +52,11 @@ next-env.d.ts
 .codex
 .opencode
 
+# storybook
 *storybook.log
-storybook-static
+/storybook-static
+
+# wrangler
+.wrangler
+.dev.vars*
+!.dev.vars.example

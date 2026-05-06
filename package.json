@@ -4,6 +4,7 @@
   "private": true,
   "packageManager": "pnpm@10.24.0",
   "scripts": {
+    "build": "next build",
     "dev": "pnpm run dev:all",
     "dev:web": "next dev",
     "dev:company-system": "node server/scripts/company-system-server.mjs",
@@ -14,15 +15,19 @@
     "ollama:pull": "ollama pull qwen2.5:3b",
     "ollama:pull:vision": "ollama pull gemma3:4b",
     "tunnel:ollama": "cloudflared tunnel --url http://127.0.0.1:11434 --http-host-header 127.0.0.1:11434",
-    "build": "next build",
     "start": "next start",
     "lint": "eslint",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build -o storybook-static",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
   },
   "dependencies": {
     "@ai-sdk/openai": "^3.0.27",
     "@ai-sdk/react": "^3.0.83",
+    "@opennextjs/cloudflare": "^1.19.6",
     "ai": "^6.0.81",
     "mammoth": "^1.11.0",
     "next": "16.1.6",
@@ -33,26 +38,27 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "^5.1.2",
+    "@storybook/addon-a11y": "^10.3.6",
+    "@storybook/addon-docs": "^10.3.6",
+    "@storybook/addon-vitest": "^10.3.6",
+    "@storybook/nextjs-vite": "^10.3.6",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitest/browser-playwright": "^4.1.5",
+    "@vitest/coverage-v8": "^4.1.5",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
+    "eslint-plugin-storybook": "^10.3.6",
     "json-server": "^1.0.0-beta.3",
+    "playwright": "^1.59.1",
+    "storybook": "^10.3.6",
     "tailwindcss": "^4",
     "typescript": "^5",
-    "storybook": "^10.3.6",
-    "@storybook/nextjs-vite": "^10.3.6",
-    "@chromatic-com/storybook": "^5.1.2",
-    "@storybook/addon-vitest": "^10.3.6",
-    "@storybook/addon-a11y": "^10.3.6",
-    "@storybook/addon-docs": "^10.3.6",
     "vite": "^8.0.10",
-    "eslint-plugin-storybook": "^10.3.6",
     "vitest": "^4.1.5",
-    "playwright": "^1.59.1",
-    "@vitest/browser-playwright": "^4.1.5",
-    "@vitest/coverage-v8": "^4.1.5"
+    "wrangler": "^4.88.0"
   }
 }
