@@ -59,3 +59,10 @@ select {
     opacity: 1;
   }
 }
+
+@utility blob {
+  position: absolute;
+  height: 500px;
+  width: 500px;
+  border-radius: 9999px;
+}
