@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ThemeProvider } from "next-themes";
 import {
   APP_METADATA_DESCRIPTION,
   APP_METADATA_TITLE,
@@ -16,15 +17,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className="antialiased">
-        {/* Background blobs */}
-        <div className="pointer-events-none fixed inset-0 overflow-hidden" aria-hidden="true">
-          <div className="absolute -left-28 -top-24 h-[500px] w-[500px] rounded-full bg-violet-500/14 blur-[78px]" />
-          <div className="absolute -bottom-24 -left-16 h-[520px] w-[520px] rounded-full bg-indigo-600/16 blur-[78px]" />
-          <div className="absolute -right-24 top-1/4 h-[500px] w-[500px] rounded-full bg-cyan-500/12 blur-[82px]" />
-        </div>
-        {children}
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          {/* Background blobs */}
+          <div className="pointer-events-none fixed inset-0 overflow-hidden" aria-hidden="true">
+            <div className="absolute -left-28 -top-24 h-120 w-120 rounded-full bg-violet-500/14 blur-[78px]" />
+            <div className="absolute -bottom-24 -left-16 h-121 w-121 rounded-full bg-indigo-600/16 blur-[78px]" />
+            <div className="absolute -right-24 top-1/4 h-120 w-120 rounded-full bg-cyan-500/12 blur-[82px]" />
+          </div>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
