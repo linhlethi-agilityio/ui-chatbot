@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
+import { useState } from "react";
 import { useTheme } from "next-themes";
 
 import { Badge } from "@/components/ui/badge";
@@ -57,25 +58,56 @@ export function ThreadSidebar({
   onDeleteThread,
   onResetChat,
 }: ThreadSidebarProps) {
+  const [confirmReset, setConfirmReset] = useState(false);
   const { resolvedTheme, setTheme } = useTheme();
 
-  const handleChangeTheme = () => {
+  function handleChangeTheme() {
     setTheme(resolvedTheme === Theme.DARK ? Theme.LIGHT : Theme.DARK);
+  }
+
+  function handleResetClick() {
+    if (confirmReset) {
+      onResetChat();
+      setConfirmReset(false);
+    } else {
+      setConfirmReset(true);
+    }
   }
 
   return (
     <aside className="flex w-full flex-col rounded-[1.75rem] border border-white/9 bg-panel text-white backdrop-blur-[28px] shadow-[0_16px_60px_rgba(7,12,32,0.32)] lg:max-w-sm">
       <div className="border-b border-white/8 p-5">
         <div className="mb-3 flex justify-start gap-2">
+          {confirmReset ? (
+            <div className="flex items-center gap-1.5">
+              <button
+                type="button"
+                aria-label="Cancel reset"
+                onClick={() => setConfirmReset(false)}
+                className="h-8 px-2.5 rounded-lg text-xs font-medium transition cursor-pointer bg-white/8 text-white/50 hover:bg-white/14 hover:text-white/90 light:bg-slate-200 light:text-slate-600 light:hover:bg-slate-300 light:hover:text-slate-900"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                aria-label="Confirm reset chat"
+                onClick={handleResetClick}
+                className="h-8 px-2.5 rounded-lg text-xs font-medium transition cursor-pointer bg-white/8 text-rose-300/80 hover:bg-rose-500/15 hover:text-rose-300 light:bg-slate-200 light:text-rose-500 light:hover:bg-rose-100 light:hover:text-rose-600"
+              >
+                Confirm reset
+              </button>
+            </div>
+          ) : (
           <button
             type="button"
             aria-label="Reset chat"
-            onClick={onResetChat}
+            onClick={handleResetClick}
             disabled={disabled}
             className="grid h-8 w-8 aspect-square shrink-0 place-items-center rounded-lg transition cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 bg-white/8 text-white/50 hover:bg-white/14 hover:text-white/90 light:bg-slate-200 light:text-slate-600 light:hover:bg-slate-300 light:hover:text-slate-900"
           >
             <ArrowPathIcon className="h-4 w-4" />
           </button>
+          )}
           <button
             type="button"
             aria-label="Toggle theme"
