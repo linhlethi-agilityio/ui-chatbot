@@ -59,6 +59,11 @@ export function ChatComposer({
     }
   }
 
+  function handleStopAction(e: React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
+    onStopAction();
+  }
+
   return (
     <div className="border-t border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.06))] backdrop-blur-[1.75rem] px-4 py-3 sm:px-6 lg:px-8 shadow-[0_-1px_0_rgba(255,255,255,0.04),0_-10px_34px_rgba(0,0,0,0.2)]">
       <div className="mx-auto w-full max-w-3xl flex flex-col gap-2">
@@ -97,19 +102,19 @@ export function ChatComposer({
           />
 
           <button
-            type={isLoading ? "button" : "submit"}
+            type="submit"
             disabled={!isLoading && !canSend}
             aria-label={isLoading ? CHAT_COMPOSER_COPY.stopButtonLabel : CHAT_COMPOSER_COPY.sendButtonLabel}
-            {...(isLoading && { onClick: onStopAction })}
+            {...(isLoading && { onClick: handleStopAction })}
             className={cn(
               "self-end grid h-10 w-10 shrink-0 place-items-center rounded-xl transition-all duration-200",
               "disabled:opacity-30 disabled:cursor-not-allowed",
               "hover:scale-[1.04] hover:shadow-[0_6px_20px_rgba(99,60,220,0.4)]",
               isLoading
-                ? "bg-white/18 text-white/75"
+                ? "bg-loading"
                 : canSend
-                  ? "bg-[linear-gradient(135deg,#8b5cf6,#6366f1,#0ea5e9)] text-white"
-                  : "bg-white/18 text-white/75",
+                  ? "bg-brand-gradient text-white"
+                  : "bg-loading",
             )}
           >
             {isLoading ? (

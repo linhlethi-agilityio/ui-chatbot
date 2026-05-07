@@ -49,6 +49,15 @@ select {
   background: rgba(124, 58, 237, 0.3);
 }
 
+@utility bg-brand-gradient {
+  background: linear-gradient(135deg, #8b5cf6, #6366f1, #0ea5e9);
+}
+
+@utility bg-loading {
+  background: rgb(255 255 255 / 0.18);
+  color: rgb(255 255 255 / 0.75);
+}
+
 @keyframes tdot {
   0%, 60%, 100% {
     transform: translateY(0);
