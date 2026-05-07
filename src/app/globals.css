@@ -60,6 +60,30 @@ select {
   background: linear-gradient(165deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
 }
 
+@utility bg-panel-sm {
+  background: linear-gradient(170deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.03));
+}
+
+@utility bg-glass {
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.04));
+}
+
+@utility bg-composer {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.06));
+}
+
+@utility bg-composer-input {
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
+}
+
+@utility bg-user-bubble {
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.5), rgba(79, 70, 229, 0.44), rgba(14, 165, 233, 0.22));
+}
+
+@utility bg-app-header {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+}
+
 @utility bg-brand-gradient {
   background: linear-gradient(135deg, #8b5cf6, #6366f1, #0ea5e9);
 }
