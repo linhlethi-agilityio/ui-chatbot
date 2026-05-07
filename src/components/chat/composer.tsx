@@ -109,7 +109,7 @@ export function ChatComposer({
             className={cn(
               "self-end grid h-10 w-10 shrink-0 place-items-center rounded-xl transition-all duration-200",
               "disabled:opacity-30 disabled:cursor-not-allowed",
-              "hover:scale-[1.04] hover:shadow-[0_6px_20px_rgba(99,60,220,0.4)]",
+              "hover:scale-[1.04] hover:shadow-brand",
               isLoading
                 ? "bg-loading"
                 : canSend
