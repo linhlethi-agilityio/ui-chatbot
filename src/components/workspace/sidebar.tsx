@@ -40,6 +40,7 @@ type ThreadSidebarProps = {
   onSwitchThread: (id: string) => void;
   onCreateThread: () => void;
   onDeleteThread: (id: string) => void;
+  onResetChat: () => void;
 };
 
 export function ThreadSidebar({
@@ -51,6 +52,7 @@ export function ThreadSidebar({
   onSwitchThread,
   onCreateThread,
   onDeleteThread,
+  onResetChat,
 }: ThreadSidebarProps) {
   const { resolvedTheme, setTheme } = useTheme();
 
@@ -61,7 +63,18 @@ export function ThreadSidebar({
   return (
     <aside className="flex w-full flex-col rounded-[1.75rem] border border-white/9 bg-[linear-gradient(165deg,rgba(255,255,255,0.06),rgba(255,255,255,0.03))] text-white backdrop-blur-[28px] shadow-[0_16px_60px_rgba(7,12,32,0.32)] lg:max-w-sm">
       <div className="border-b border-white/8 p-5">
-        <div className="mb-3 flex justify-start">
+        <div className="mb-3 flex justify-start gap-2">
+          <button
+            type="button"
+            aria-label="Reset chat"
+            onClick={onResetChat}
+            disabled={disabled}
+            className="grid h-8 w-8 aspect-square shrink-0 place-items-center rounded-lg transition cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 bg-white/8 text-white/50 hover:bg-white/14 hover:text-white/90 light:bg-slate-200 light:text-slate-600 light:hover:bg-slate-300 light:hover:text-slate-900"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="h-4 w-4">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+            </svg>
+          </button>
           <button
             type="button"
             aria-label="Toggle theme"

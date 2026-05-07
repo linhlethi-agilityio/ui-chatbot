@@ -74,6 +74,7 @@ function WorkspaceAppClient({ authRole, authSessions }: WorkspaceAppProps) {
     createNewThread,
     deleteThread,
     stop,
+    resetChat,
     handleSubmit,
     handlePromptSelect,
     handleToolApproval,
@@ -126,6 +127,7 @@ function WorkspaceAppClient({ authRole, authSessions }: WorkspaceAppProps) {
           onSwitchThread={switchThread}
           onCreateThread={createNewThread}
           onDeleteThread={deleteThread}
+          onResetChat={resetChat}
         />
 
         <section className="flex min-h-[70vh] flex-1 flex-col overflow-hidden rounded-[1.75rem] border border-white/9 bg-[linear-gradient(170deg,rgba(255,255,255,0.06),rgba(255,255,255,0.03))] backdrop-blur-[28px] shadow-[0_16px_60px_rgba(7,12,32,0.36)]">

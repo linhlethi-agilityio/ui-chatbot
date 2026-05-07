@@ -222,15 +222,19 @@ export function useWorkspaceApp(
     void addToolApprovalResponse({ id, approved });
   }
 
+  function resetChat() {
+    clearError();
+    setInput("");
+    setMessages([]);
+    autoSubmittedApprovalIdsRef.current.clear();
+  }
+
   function handleRoleChange(role: AppRole) {
     if (role === selectedRole) {
       return;
     }
 
-    clearError();
-    setInput("");
-    setMessages([]);
-    autoSubmittedApprovalIdsRef.current.clear();
+    resetChat();
     setSelectedRole(role);
   }
 
@@ -273,6 +277,7 @@ export function useWorkspaceApp(
     createNewThread,
     deleteThread,
     stop,
+    resetChat,
     submitTextMessage,
     handleSubmit,
     handlePromptSelect,
