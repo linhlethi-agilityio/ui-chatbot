@@ -73,6 +73,7 @@ function WorkspaceAppClient({ authRole, authSessions }: WorkspaceAppProps) {
     switchThread,
     createNewThread,
     deleteThread,
+    stop,
     handleSubmit,
     handlePromptSelect,
     handleToolApproval,
@@ -188,6 +189,7 @@ function WorkspaceAppClient({ authRole, authSessions }: WorkspaceAppProps) {
             errorMessage={requestError}
             onInputChange={setInput}
             onSubmitAction={handleSubmit}
+            onStopAction={stop}
           />
         </section>
       </div>

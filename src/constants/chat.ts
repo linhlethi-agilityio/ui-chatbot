@@ -11,6 +11,7 @@ export const CHAT_COMPOSER_COPY = {
   thinkingButtonLabel: "Thinking...",
   verifyFirstButtonLabel: "Verify first",
   verifyProviderTooltip: "Please verify your OpenAI key first.",
+  stopButtonLabel: "Stop generating",
 } as const;
 
 export const CHAT_THREAD_COPY = {

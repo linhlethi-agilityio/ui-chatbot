@@ -21,6 +21,7 @@ type ChatComposerProps = {
   errorMessage?: string | null;
   onInputChange: (value: string) => void;
   onSubmitAction: FormEventHandler<HTMLFormElement>;
+  onStopAction: () => void;
 };
 
 export function ChatComposer({
@@ -33,6 +34,7 @@ export function ChatComposer({
   errorMessage,
   onInputChange,
   onSubmitAction,
+  onStopAction,
 }: ChatComposerProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [showTooltip, setShowTooltip] = useState(false);
@@ -55,6 +57,11 @@ export function ChatComposer({
       event.preventDefault();
       if (canSend) event.currentTarget.form?.requestSubmit();
     }
+  }
+
+  function handleStopAction(e: React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
+    onStopAction();
   }
 
   return (
@@ -96,19 +103,24 @@ export function ChatComposer({
 
           <button
             type="submit"
-            disabled={!canSend}
-            aria-label={CHAT_COMPOSER_COPY.sendButtonLabel}
+            disabled={!isLoading && !canSend}
+            aria-label={isLoading ? CHAT_COMPOSER_COPY.stopButtonLabel : CHAT_COMPOSER_COPY.sendButtonLabel}
+            {...(isLoading && { onClick: handleStopAction })}
             className={cn(
               "self-end grid h-10 w-10 shrink-0 place-items-center rounded-xl transition-all duration-200",
               "disabled:opacity-30 disabled:cursor-not-allowed",
-              "hover:scale-[1.04] hover:shadow-[0_6px_20px_rgba(99,60,220,0.4)]",
-              canSend
-                ? "bg-[linear-gradient(135deg,#8b5cf6,#6366f1,#0ea5e9)] text-white"
-                : "bg-white/18 text-white/75",
+              "hover:scale-[1.04] hover:shadow-brand",
+              isLoading
+                ? "bg-loading"
+                : canSend
+                  ? "bg-brand-gradient text-white"
+                  : "bg-loading",
             )}
           >
             {isLoading ? (
-              <span className="h-2 w-2 animate-pulse rounded-full bg-current" />
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
+                <rect x="6" y="6" width="12" height="12" rx="2" />
+              </svg>
             ) : (
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
                 <path d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z" />
