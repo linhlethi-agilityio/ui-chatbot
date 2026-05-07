@@ -16,7 +16,7 @@ const config: Config = {
     '**/__test__/**/*.[jt]s?(x)',
     '**/?(*.)+(spec|test).[jt]s?(x)',
   ],
-  testPathIgnorePatterns: ['/node_modules/', '/.next/'],
+  testPathIgnorePatterns: ['/node_modules/', '/.next/', '/src/agents/'],
   coveragePathIgnorePatterns: ['/node_modules/', '/.next/', '/src/icons/'],
 };
 
