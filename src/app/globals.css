@@ -70,10 +70,16 @@ select {
 
 @utility bg-composer {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.06));
+  &:where(.light, .light *) {
+    background: rgba(255, 255, 255, 0.8);
+  }
 }
 
 @utility bg-composer-input {
   background: linear-gradient(165deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
+  &:where(.light, .light *) {
+    background: #ffffff;
+  }
 }
 
 @utility bg-user-bubble {
@@ -91,6 +97,10 @@ select {
 @utility bg-loading {
   background: rgb(255 255 255 / 0.18);
   color: rgb(255 255 255 / 0.75);
+  &:where(.light, .light *) {
+    background: rgb(100 80 200 / 0.12);
+    color: rgb(100 80 200 / 0.8);
+  }
 }
 
 @keyframes tdot {
