@@ -61,7 +61,7 @@ export function ThreadSidebar({
   }
 
   return (
-    <aside className="flex w-full flex-col rounded-[1.75rem] border border-white/9 bg-[linear-gradient(165deg,rgba(255,255,255,0.06),rgba(255,255,255,0.03))] text-white backdrop-blur-[28px] shadow-[0_16px_60px_rgba(7,12,32,0.32)] lg:max-w-sm">
+    <aside className="flex w-full flex-col rounded-[1.75rem] border border-white/9 bg-panel text-white backdrop-blur-[28px] shadow-[0_16px_60px_rgba(7,12,32,0.32)] lg:max-w-sm">
       <div className="border-b border-white/8 p-5">
         <div className="mb-3 flex justify-start gap-2">
           <button

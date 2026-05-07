@@ -56,6 +56,10 @@ select {
   box-shadow: 0 6px 20px rgba(99, 60, 220, 0.4);
 }
 
+@utility bg-panel {
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
+}
+
 @utility bg-brand-gradient {
   background: linear-gradient(135deg, #8b5cf6, #6366f1, #0ea5e9);
 }
