@@ -57,6 +57,10 @@ next-env.d.ts
 /storybook-static
 
 # wrangler
+# OpenNext
+.open-next
+
+# wrangler files
 .wrangler
 .dev.vars*
 !.dev.vars.example
