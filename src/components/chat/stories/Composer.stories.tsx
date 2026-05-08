@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { ChatComposer } from "@/components/chat/composer";
+import { CHAT_COMPOSER_COPY, CHAT_HELPER_COPY_BY_ROLE } from "@/constants/chat";
 
 const meta: Meta<typeof ChatComposer> = {
   title: "Chat/Composer",
@@ -22,77 +23,55 @@ export default meta;
 
 type Story = StoryObj<typeof ChatComposer>;
 
+const defaultArgs = {
+  input: "",
+  canSend: false,
+  isLoading: false,
+  isProviderReady: true,
+  onInputChange: () => {},
+  onSubmitAction: () => {},
+  onStopAction: () => {},
+};
+
 export const Default: Story = {
-  args: {
-    input: "",
-    canSend: false,
-    isLoading: false,
-    isProviderReady: true,
-    onInputChange: () => {},
-    onSubmitAction: () => {},
-    onStopAction: () => {},
-  },
+  args: defaultArgs,
 };
 
 export const WithText: Story = {
   args: {
+    ...defaultArgs,
     input: "Ask about your balance or request time off",
     canSend: true,
-    isLoading: false,
-    isProviderReady: true,
-    onInputChange: () => {},
-    onSubmitAction: () => {},
-    onStopAction: () => {},
   },
 };
 
 export const Loading: Story = {
   args: {
-    input: "",
-    canSend: false,
+    ...defaultArgs,
     isLoading: true,
-    isProviderReady: true,
-    onInputChange: () => {},
-    onSubmitAction: () => {},
-    onStopAction: () => {},
   },
 };
 
 export const ProviderNotReady: Story = {
   args: {
-    input: "",
-    canSend: false,
-    isLoading: false,
+    ...defaultArgs,
     isProviderReady: false,
-    inputTooltip: "Please verify your API key first",
-    onInputChange: () => {},
-    onSubmitAction: () => {},
-    onStopAction: () => {},
+    inputTooltip: CHAT_COMPOSER_COPY.submitHint,
   },
 };
 
 export const WithError: Story = {
   args: {
+    ...defaultArgs,
     input: "Some message",
     canSend: true,
-    isLoading: false,
-    isProviderReady: true,
-    errorMessage: "Something went wrong. Please try again.",
-    onInputChange: () => {},
-    onSubmitAction: () => {},
-    onStopAction: () => {},
+    errorMessage: CHAT_COMPOSER_COPY.verifyProviderTooltip,
   },
 };
 
 export const WithHelperText: Story = {
   args: {
-    input: "",
-    canSend: false,
-    isLoading: false,
-    isProviderReady: true,
-    helperText: "Review your balance or requests first; leave changes now require a quick UI confirmation.",
-    onInputChange: () => {},
-    onSubmitAction: () => {},
-    onStopAction: () => {},
+    ...defaultArgs,
+    helperText: CHAT_HELPER_COPY_BY_ROLE.user,
   },
 };
